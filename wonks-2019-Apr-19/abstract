@@ -1,21 +1,28 @@
-Title : Latest in Pycket: What we are doing and why that is hard.
+Title : Latest in Pycket: Why the self-hosting makes meta-tracing
+difficult?
 
 Abstract: 
 
+JIT-ing a language with meta-tracing involves two interpreters: the
+language interpreter implementing the language, and the tracing
+interpreter that walks with the language interpreter to find some
+loops and optimize them. One of the main problems with this is to
+detect and optimize the loops in the user program (interpreted by the
+language interpreter), instead of the ones in the dispatch loop of the
+language interpreter itself. This problem (among many others) is
+solved by PyPy, which manages to perform on average twice as fast as
+CPython.
 
-One of the main problems of JIT-ing a language using
-meta-interpretation is to find the loops in the user program, rather
-than the ones in the dispatch loop of the language interpreter. This
-problem (among many others) is solved by PyPy, which manages to
-perform on average twice as fast as CPython.
+What we currently do with Pycket, is to see if we can do this with
+another "meta" level on top, i.e. meta-interpreting a self-hosting
+interpreter (the one currently on Pycket that bootstraps Racket using
+linklets), effectively trying to push the abstraction level in which
+we find the loops, even further than the user programs on the language
+interpreter. Turns out, finding loops is not the only issue we need to
+tackle to achieve a good performance with this setup.
 
-What we have in Pycket, is to see if we can do this with another
-"meta" level on top, i.e. meta-interpreting a self-hosting interpreter
-(you know, the one with the Racket linklets), effectively trying to
-push the level in which finding loops is possible. Turns out that's
-not the only issue we need to solve to achieve a good performance.
-
-We're going to briefly talk about these problems and I'll explain our
-current strategies to solve them.
-
-
+We're going to talk about these issues and how we try to solve
+them. In previous talks about Pycket, we talked about self-hosting
+Racket using linklets, this one will be more focused on meta-tracing,
+and what we observed so far on how self-hosting Racket makes it
+difficult.
