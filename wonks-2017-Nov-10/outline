@@ -1,0 +1,14 @@
+Part 1 - What?
+
+     - pycket
+     - what does bytecode look like? Some properties
+     - bytecode compiler
+
+Part 2 - How?
+
+     - transformation, direct form transformations, simulating the runtime stack, toplevel handling
+
+Part 3 - So?
+
+     - bytecode compiler optimizations (couple of examples, inlining etc.)
+     - timing comparisons of pycket with different expansions
