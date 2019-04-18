@@ -1,8 +1,11 @@
+#SLIDESHOW := $(shell which slideshow)
+SLIDESHOW := $(PLTHOME)/racket/bin/slideshow
+
 run-wide:
-	slideshow --widescreen the-talk.rkt
+	$(SLIDESHOW) --widescreen the-talk.rkt
 
 run:
-	slideshow the-talk.rkt
+	$(SLIDESHOW) the-talk.rkt
 
 clean:
 	rm -rf *~
